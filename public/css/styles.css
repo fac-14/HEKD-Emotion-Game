@@ -1,3 +1,12 @@
+:root {
+  --main-bg-color: hsl(177, 69%, 50%);
+  --main-heading-color: hsl(177, 100%, 4%);
+  --main-text-color: hsl(177, 100%, 7%);
+  --lighter-color: hsl(169, 31%, 93%);
+  --darker-color: hsl(177, 100%, 18%);
+  --accent-color: hsl(322, 100%, 30%);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,6 +15,20 @@
 body {
   height: 100vh;
   width: 100vw;
+  background: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+h1 {
+  font-size: 5rem;
+  color: var(--main-heading-color);
 }
 
 /* CLASSES */
