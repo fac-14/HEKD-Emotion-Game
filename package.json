@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc tape ./src/tests/*.js | tap-spec",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "build-db": "node src/db/db_build.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "express-sessions": "^1.0.6",
     "passport": "^0.4.0",
     "pg": "^7.4.3",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "pg-promise": "^8.4.6"
   }
 }
