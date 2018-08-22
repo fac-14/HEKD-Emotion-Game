@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* CLASSES */
+
+.errorpage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 5rem;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://stmed.net/sites/default/files/nicolas-cage-wallpapers-27174-4621718.jpg');
+  background-size: cover;
+}
