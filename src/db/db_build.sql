@@ -16,7 +16,7 @@ CREATE TABLE scores (
   score FLOAT(4) NOT NULL, -- should give about 7 decimal places (4-bytes worth)
   emotion VARCHAR(20),
   img VARCHAR(100)
-)
+);
 
 INSERT INTO users (name,email,pw_hash) VALUES
 ('Nicolas Cage', 'nicolas@cage.com', 'placeholder'),
