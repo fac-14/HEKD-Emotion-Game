@@ -1,0 +1,28 @@
+<section class="formpage">
+    <h2>Sign Up</h2>
+    <form id="signup-form" method="POST" action="/signup">
+        <div class="form-row-spaced">
+                <label for="email-input">Email address</label>
+                <input id="email-input" placeholder="Email address" type="email" required>
+        </div>
+        <div class="form-row-spaced">
+                <label for="name-input">Name</label>
+                <input id="name-input" placeholder="Firstname Lastname" type="text" required>
+        </div>
+        <div class="form-row-spaced">
+                <label for="password-input">Password</label>
+                <input id="password-input" placeholder="Password" type="password" required>
+        </div>
+        <div class="form-row-spaced">
+                <label for="password-confirm">Confirm password</label>
+                <input id="password-confirm" placeholder="Password" type="password" required>
+        </div>
+        <div class="form-row-centered">
+            <button type="submit" class="submit-btn">Sign Up</button>
+            {{!-- Need to decide register link --}}
+        </div>
+        <div class="form-row-centered">
+                <a href="/login">Already registered? Click here to log in</a>
+        </div>
+    </form>
+</section>
