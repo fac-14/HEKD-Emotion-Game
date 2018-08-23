@@ -14,9 +14,10 @@
 
 
 body {
-  /* height: 100vh; */
+  height: 100vh;
   width: 100vw;
   background: var(--main-bg-color);
+  background-image: url(../imgs/trianglify.svg);
   color: var(--main-text-color);
 }
 
@@ -25,6 +26,8 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  width: 100vw;
+  height: 100vh;
 }
 
 h1 {
@@ -46,6 +49,35 @@ p{
   line-height: 2rem;
 }
 
+button {
+  padding: 0.5rem;
+  width: 50%;
+  margin: 0.5rem;
+  height: 20%;
+  color: white;
+  font-size: 2rem;
+  background: var(--accent-color);
+  border: 2px solid var(--main-heading-color);
+}
+
+button:hover {
+  color: var(--accent-color);
+  border: 2px solid var(--main-heading-color);
+  background: white;
+}
+
+button:hover #no-span {
+  display: none;
+}
+
+#no-btn:hover:before {
+  content:"YES!";
+}
+
+.transparent {
+  background:rgba(255,255,255,0.2);
+}
+
 /* IDs */
 
 #image-preview {
@@ -54,6 +86,14 @@ p{
   margin: auto;
   border: 1px solid black;
 
+}
+
+#home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
 }
 
 /* CLASSES */
@@ -133,16 +173,6 @@ input {
 
 figure {
   width: 100%;
-}
-
-button {
-  padding: 0.5rem;
-  width: 50%;
-  height: 20%;
-  color: white;
-  font-size: 2rem;
-  background: var(--accent-color);
-  border: 2px solid var(--main-heading-color);
 }
 
 
