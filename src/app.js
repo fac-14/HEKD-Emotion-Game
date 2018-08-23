@@ -1,20 +1,20 @@
 const express = require('express');
-const session = require('express-sessions');
+const session = require('express-session');
 const path = require('path');
 const favicon = require('serve-favicon');
 const handlebars = require('express-handlebars');
-const compression = require('compression');
-const helmet = require('helmet');
+// const compression = require('compression');
+// const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const morgan = require('morgan');
 
 const controllers = require('./controllers/index.js')
 const helpers = require('./views/helpers/index.js')
 
 // load models
-const { user, sql } = require('./models/user');
+const { user } = require('./models/user');
 
 const app = express();
 
@@ -38,19 +38,18 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(controllers);
-app.use(compression());
-app.use(helmet());
+// app.use(compression());
+// app.use(helmet());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  session({
+app.use(session({
     // sets a session
     key: "session_id",
-    secret: process.env.secret,
-    store: new SequelizeStore({
-      db: sql
-    }),
+    secret: 'lelennyface',
+    // store: new SequelizeStore({
+    //   db: sql
+    // }),
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -67,8 +66,18 @@ app.use((req, res, next) => {
   next();
 });
 
+//check for logged in users
+var sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.session_id) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+}
+
 // start with upload route
 app.get('/upload', sessionChecker, (req, res) => {
+  console.log('upload redirect');
   res.redirect('/login');
 });
 
@@ -98,14 +107,25 @@ app.route('/login')
     res.render('login');
   })
   .post((req, res) => {
-    const { name, password } = req.body;
-    user.findOne({ where: { name } }).then(u => {
-      console.log(u.dataValues);
-      if (!u || !u.validPassword(password)) {
-        res.redirect('/login');
+    // const { name, password } = req.body;
+    var name = req.body.name;
+    var password = req.body.password;
+    // user.findOne({ where: { name } }).then(u => {
+    //   console.log(u.dataValues);
+    //   if (!u || !u.validPassword(password)) {
+    //     res.redirect('/login');
+    //   } else {
+    //     req.session.user = u.dataValues;
+    //     res.redirect('/');
+    //   }
+    User.findOne({ where: { name: name } }).then(function (user) {
+      if (!user) {
+          res.redirect('/login');
+      } else if (!user.validPassword(password)) {
+          res.redirect('/login');
       } else {
-        req.session.user = u.dataValues;
-        res.redirect('/');
+          req.session.user = user.dataValues;
+          res.redirect('/');
       }
     })
   })
