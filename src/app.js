@@ -73,7 +73,50 @@ app.get('/upload', sessionChecker, (req, res) => {
 
 // upload route checks for logged in session 
 app.route('/signup')
-  .get
+  .get(sessionChecker, (req, res) => {
+    res.render('signup');
+  })
+  .post((req, res) => {
+    user.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    })
+      .then(user => {
+        req.session.user = user.dataValues;
+        res.redirect("/");
+      })
+      .catch(error => {
+        res.redirect('/signup');
+      });
+  });
+
+// presents login screen on GET and checks loginon POST
+app.route('/login')
+  .get(sessionChecker, (req, res) => {
+    res.render('login');
+  })
+  .post((req, res) => {
+    const { name, password } = req.body;
+    user.findOne({ where: { name } }).then(u => {
+      console.log(u.dataValues);
+      if (!u || !u.validPassword(password)) {
+        res.redirect('/login');
+      } else {
+        req.session.user = u.dataValues;
+        res.redirect('/');
+      }
+    })
+  })
+
+app.get('/logout', (req, res) => {
+  if (req.session.user && req.cookies.session_id) {
+    res.clearCookie('session_id');
+    res.redirect('/');
+  } else {
+    res.redirect('/login');
+  }
+});
 
 
 module.exports = app;
