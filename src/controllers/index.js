@@ -4,6 +4,7 @@ const router = express.Router();
 
 //import route controllers
 const home = require('./home');
+const login = require('./login');
 const error = require('./error.js');
 
 // add routes
