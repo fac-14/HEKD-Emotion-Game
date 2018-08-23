@@ -8,6 +8,20 @@ body {
   width: 100vw;
 }
 
+h1{
+  font-family: "Hipstelvetica";
+  font-weight: 600;
+  font-size: 5rem;
+  margin: 1rem;
+}
+
+p{
+  font-family: "Chelsea";
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
 /* CLASSES */
 
 .errorpage {
@@ -20,4 +34,26 @@ body {
   height: 100vh;
   background-image: url('https://stmed.net/sites/default/files/nicolas-cage-wallpapers-27174-4621718.jpg');
   background-size: cover;
+}
+/* --------------- TYPESTYLES --------------- */
+
+@font-face {
+  font-family: Hipstelvetica;
+  font-weight: 600;
+  src: url("../fonts/Hipstelvetica\ Bold.ttf");
+}
+@font-face {
+  font-family: Hipstelvetica;
+  font-weight: 400;
+  src: url("../fonts/Hipstelvetica\ Light.ttf");
+}
+@font-face {
+  font-family: Hipstelvetica;
+  font-weight: 300;
+  src: url("../fonts/Hipstelvetica\ UltraLight.ttf");
+}
+@font-face {
+  font-family: Chelsea;
+  font-weight: 400;
+  src: url("../fonts/Chelsea.ttf");
 }
