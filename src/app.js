@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-sessions');
 const path = require('path');
 const favicon = require('serve-favicon');
 const handlebars = require('express-handlebars');
@@ -6,7 +7,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const sequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const morgan = require('morgan');
 
 const controllers = require('./controllers/index.js')
@@ -47,7 +48,7 @@ app.use(
     // sets a session
     key: "session_id",
     secret: process.env.secret,
-    store: new sequelizeStore({
+    store: new SequelizeStore({
       db: sql
     }),
     resave: false,

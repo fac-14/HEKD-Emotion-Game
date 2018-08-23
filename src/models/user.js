@@ -25,7 +25,7 @@ const user = sql.define(
     email: {
       type: Sequelize.STRING,
       unique: true,
-      allowNull: flase
+      allowNull: false
     },
     pw_hash: {
       type: Sequelize.STRING,
@@ -43,8 +43,8 @@ const user = sql.define(
   }
 );
 
-user.protoype.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
+user.protoype.validPassword = function (pw_hash) {
+  return bcrypt.compareSync(pw_hash, this.pw_hash);
 };
 
 sql.sync()
