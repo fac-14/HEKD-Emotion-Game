@@ -31,7 +31,12 @@ h1 {
   color: var(--main-heading-color);
 }
 
-/* CLASSES */
+h2 {
+  font-size: 3rem;
+  color: var(--main-text-color);
+}
+
+/* SECTION CLASSES */
 
 .errorpage {
   display: flex;
@@ -43,4 +48,36 @@ h1 {
   height: 100vh;
   background-image: url('https://stmed.net/sites/default/files/nicolas-cage-wallpapers-27174-4621718.jpg');
   background-size: cover;
+}
+
+.formpage {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* FORM AND BUTTON STYLES */
+
+#login-form {
+  width: 80%;
+}
+
+input [type=text] {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid var(--main-text-color);
+  width: 50%;
+}
+
+button {
+  width: 50%;
+
 }
