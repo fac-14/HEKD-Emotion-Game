@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS users, scores CASCADE;
+DROP TABLE IF EXISTS users, scores, active_sessions CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -16,6 +16,13 @@ CREATE TABLE scores (
   score FLOAT(4) NOT NULL, -- should give about 7 decimal places (4-bytes worth)
   emotion VARCHAR(20),
   img VARCHAR(100)
+);
+
+CREATE TABLE active_sessions (
+  id SERIAL PRIMARY KEY,
+  session_id VARCHAR(100) NOT NULL UNIQUE,
+  email VARCHAR(80) REFERENCES users(email) NOT NULL,
+  creation_date DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 INSERT INTO users (name,email,pw_hash) VALUES
