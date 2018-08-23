@@ -1,7 +1,7 @@
 <section class="formpage">
     <h2>Log In</h2>
     {{!-- *may* need to change form action to another endpoint --}}
-    <form id="login-form" method="POST" action="/login"> 
+    <form id="login-form" method="POST" action="/login">
         <div class="form-row-spaced">
             <label for="email-input">Email address</label>
             <input id="email-input" placeholder="Email address" type="email" required>
@@ -15,7 +15,7 @@
             {{!-- Need to decide register link --}}
         </div>
         <div class="form-row-centered">
-            <a href="#">Not registered yet? Click here to sign up</a>
+            <a href="/signup">Not registered yet? Click here to sign up</a>
         </div>
     </form>
 </section>
