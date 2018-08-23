@@ -1,20 +1,37 @@
 const express = require('express');
 const session = require('express-session');
+const uuid = require('uuid/v4');
+const FileStore = require('session-file-store')(session);
 const path = require('path');
 const favicon = require('serve-favicon');
 const handlebars = require('express-handlebars');
-// const compression = require('compression');
-// const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const morgan = require('morgan');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const controllers = require('./controllers/index.js')
 const helpers = require('./views/helpers/index.js')
 
-// load models
-const { user } = require('./models/user');
+const users = [ { id: '0', email: 'kate@kate', password: 'kate' }];
+
+passport.use(new LocalStrategy(
+  { usernameField: 'email' },
+  (email, password, done) => {
+    console.log('inside local strat cb');
+    //replace with call to database
+    const user = users[0];
+    if (email === user.email && password === user.password) {
+      console.log('local strategy true');
+      return done(null, user);
+    }
+  }
+));
+
+passport.serializeUser((user, done) => {
+  console.log('user id saved to session file store');
+  done(null, user.id);
+})
 
 const app = express();
 
@@ -38,106 +55,29 @@ app.set('host', process.env.HOST || 'localhost');
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(controllers);
-// app.use(compression());
-// app.use(helmet());
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
+
 app.use(session({
     // sets a session
-    key: "session_id",
+    genid: (req) => {
+      return uuid();
+    },
+    store: new FileStore(),
     secret: 'lelennyface',
     // store: new SequelizeStore({
     //   db: sql
     // }),
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
+      
       expires: 600000
     }
   })
 );
 
-// reset cookie if session expires
-app.use((req, res, next) => {
-  if (req.cookies.user_id && !req.session.user) {
-    res.clearCookie('session_id');
-  }
-  next();
-});
-
-//check for logged in users
-var sessionChecker = (req, res, next) => {
-  if (req.session.user && req.cookies.session_id) {
-    res.redirect('/');
-  } else {
-    next();
-  }
-}
-
-// start with upload route
-app.get('/upload', sessionChecker, (req, res) => {
-  console.log('upload redirect');
-  res.redirect('/login');
-});
-
-// upload route checks for logged in session 
-app.route('/signup')
-  .get(sessionChecker, (req, res) => {
-    res.render('signup');
-  })
-  .post((req, res) => {
-    user.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    })
-      .then(user => {
-        req.session.user = user.dataValues;
-        res.redirect("/");
-      })
-      .catch(error => {
-        res.redirect('/signup');
-      });
-  });
-
-// presents login screen on GET and checks loginon POST
-app.route('/login')
-  .get(sessionChecker, (req, res) => {
-    res.render('login');
-  })
-  .post((req, res) => {
-    // const { name, password } = req.body;
-    var name = req.body.name;
-    var password = req.body.password;
-    // user.findOne({ where: { name } }).then(u => {
-    //   console.log(u.dataValues);
-    //   if (!u || !u.validPassword(password)) {
-    //     res.redirect('/login');
-    //   } else {
-    //     req.session.user = u.dataValues;
-    //     res.redirect('/');
-    //   }
-    User.findOne({ where: { name: name } }).then(function (user) {
-      if (!user) {
-          res.redirect('/login');
-      } else if (!user.validPassword(password)) {
-          res.redirect('/login');
-      } else {
-          req.session.user = user.dataValues;
-          res.redirect('/');
-      }
-    })
-  })
-
-app.get('/logout', (req, res) => {
-  if (req.session.user && req.cookies.session_id) {
-    res.clearCookie('session_id');
-    res.redirect('/');
-  } else {
-    res.redirect('/login');
-  }
-});
 
 
 module.exports = app;

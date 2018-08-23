@@ -16,23 +16,23 @@ const sql = new Sequelize(
 );
 
 const user = sql.define(
-  'users',
-  {
-    name: {
-      type: Sequelize.STRING,
-      unique: false,
-      allowNull: false
-    },
-    email: {
-      type: Sequelize.STRING,
-      unique: true,
-      allowNull: false
-    },
-    pw_hash: {
-      type: Sequelize.STRING,
-      allowNull: false
-    }
-  },
+  // 'users',
+  // {
+  //   name: {
+  //     type: Sequelize.STRING,
+  //     unique: false,
+  //     allowNull: false
+  //   },
+  //   email: {
+  //     type: Sequelize.STRING,
+  //     unique: true,
+  //     allowNull: false
+  //   },
+  //   pw_hash: {
+  //     type: Sequelize.STRING,
+  //     allowNull: false
+  //   }
+  // },
   {
     hooks: {
       beforeCreate: user => {

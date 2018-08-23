@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc tape ./src/tests/*.js | tap-spec",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "start": "nodemon src/index.js",
+    "start": "nodemon --ignore sessions/ src/index.js",
     "build-db": "node src/db/db_build.js"
   },
   "repository": {
@@ -43,9 +43,12 @@
     "helmet": "^3.13.0",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "pg-promise": "^8.4.6",
     "sequelize": "^4.38.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "session-file-store": "^1.2.0",
+    "uuid": "^3.3.2"
   }
 }
