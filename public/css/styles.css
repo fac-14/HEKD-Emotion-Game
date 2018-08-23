@@ -27,6 +27,8 @@ main {
 }
 
 h1 {
+  font-family: "Hipstelvetica";
+  font-weight: 600;
   font-size: 5rem;
   color: var(--main-heading-color);
 }
@@ -36,6 +38,14 @@ h2 {
   color: var(--main-text-color);
 }
 
+p{
+  font-family: "Chelsea";
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+/* CLASSES */
 a {
   font-size: 1.5rem;
   color: var(--darker-color);
@@ -119,3 +129,25 @@ button {
   background: var(--accent-color);
   border: 2px solid var(--main-heading-color);
 }
+
+
+/* --------------- TYPESTYLES --------------- */
+@font-face {
+  font-family: Hipstelvetica;
+  font-weight: 600;
+  src: url("../fonts/Hipstelvetica\ Bold.ttf");
+}
+@font-face {
+  font-family: Hipstelvetica;
+  font-weight: 400;
+  src: url("../fonts/Hipstelvetica\ Light.ttf");
+}
+@font-face {
+  font-family: Hipstelvetica;
+  font-weight: 300;
+  src: url("../fonts/Hipstelvetica\ UltraLight.ttf");
+}
+@font-face {
+  font-family: Chelsea;
+  font-weight: 400;
+  src: url("../fonts/Chelsea.ttf");
