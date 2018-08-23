@@ -31,7 +31,26 @@ h1 {
   color: var(--main-heading-color);
 }
 
-/* CLASSES */
+h2 {
+  font-size: 3rem;
+  color: var(--main-text-color);
+}
+
+a {
+  font-size: 1.5rem;
+  color: var(--darker-color);
+}
+
+/* SECTION CLASSES */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  height: 100vh;
+}
 
 .errorpage {
   display: flex;
@@ -43,4 +62,60 @@ h1 {
   height: 100vh;
   background-image: url('https://stmed.net/sites/default/files/nicolas-cage-wallpapers-27174-4621718.jpg');
   background-size: cover;
+}
+
+.formpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 80vh;
+}
+
+.form-row-spaced {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem;
+  margin: 1.5rem;
+}
+
+.form-row-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  margin: 1.5rem;
+}
+
+/* FORM AND BUTTON STYLES */
+
+#login-form {
+  width: 50%;
+}
+
+label {
+  color: var(--main-text-color);
+  font-size: 2rem;
+}
+
+input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid var(--main-text-color);
+  background: transparent;
+  width: 50%;
+  font-size: 2rem;
+}
+
+button {
+  padding: 0.5rem;
+  width: 50%;
+  height: 20%;
+  color: white;
+  font-size: 2rem;
+  background: var(--accent-color);
+  border: 2px solid var(--main-heading-color);
 }
