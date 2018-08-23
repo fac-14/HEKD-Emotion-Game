@@ -31,14 +31,19 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "connect-session-sequelize": "^5.2.2",
+    "cookie-parser": "^1.4.3",
     "env2": "^2.2.2",
     "express": "^4.16.3",
     "express-fileupload": "^0.4.0",
     "express-handlebars": "^3.0.0",
     "express-sessions": "^1.0.6",
+    "helmet": "^3.13.0",
+    "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "pg": "^7.4.3",
-    "serve-favicon": "^2.5.0",
-    "pg-promise": "^8.4.6"
+    "pg-promise": "^8.4.6",
+    "serve-favicon": "^2.5.0"
   }
 }
