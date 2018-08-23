@@ -1,0 +1,20 @@
+<section>
+  <div>
+    <h2> Your emotion:</h2>
+      <h3>Desperation</h3>
+      <!-- we will need to make this dynamic -->
+  </div>
+    <figure>
+      <img id="image-preview" src="" >
+      <figcaption id="caption"></figcaption>
+    </figure>
+    <form action="/upload" method="POST">
+    <!-- may need to update action -->
+
+      <input id="file-upload" type="file" name="photo" accept="image/jpeg"></input>
+    <!-- or image/* or image/x-png,image/gif,image/jpeg -->
+      <button type="submit">Upload</button>
+    </form>
+
+</section>
+<script src="js/upload-preview.js" type="application/javascript"></script>
